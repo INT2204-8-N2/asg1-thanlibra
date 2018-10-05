@@ -7,6 +7,7 @@ package com.javaapplication1;
 
 import com.dict.Dictionary;
 import com.dict.javaconnect;
+import com.dict.speak;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -147,6 +148,11 @@ public class NewJFrame extends javax.swing.JFrame {
                 btloaAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        btloa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btloaActionPerformed(evt);
             }
         });
 
@@ -356,6 +362,13 @@ public class NewJFrame extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnhapKeyPressed
+
+    private void btloaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btloaActionPerformed
+        // TODO add your handling code here:
+        String word= btnhap.getText();
+        speak sp= new speak();
+        sp.speech(word);
+    }//GEN-LAST:event_btloaActionPerformed
 
     /**
      * @param args the command line arguments
