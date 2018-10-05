@@ -292,12 +292,16 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         javaconnect jav= new javaconnect();
         String Engtd=btnhap.getText();
-        if(jav.findtd(Engtd)==0){
-            JOptionPane.showMessageDialog(null, "Can't find");
-        }
-        else {
-            this.initData("newdic.txt");
-            
+        try{
+            if(jav.findtd(Engtd)==0){
+                JOptionPane.showMessageDialog(null, "Can't find");
+            }
+            else {
+                this.initData("newdic.txt");           
+            }
+        }catch(NullPointerException e){
+            return;
+           // JOptionPane.showMessageDialog(null, "error");
         }
     }//GEN-LAST:event_bttimtuongdoiActionPerformed
 
@@ -322,8 +326,20 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error!!");
             e.printStackTrace();
-        }        
+        }
     }//GEN-LAST:event_btlistValueChanged
+
+    private void btloaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btloaAncestorAdded
+        // TODO add your handling code here:
+        ImageIcon icon= new ImageIcon("loa.jpg");
+        btloa.setIcon(icon);
+    }//GEN-LAST:event_btloaAncestorAdded
+
+    private void btsearchAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btsearchAncestorAdded
+        // TODO add your handling code here:
+        ImageIcon icon= new ImageIcon("klup.jpg");
+        btsearch.setIcon(icon);
+    }//GEN-LAST:event_btsearchAncestorAdded
 
     private void btnhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnhapKeyPressed
         // TODO add your handling code here:
@@ -340,18 +356,6 @@ public class NewJFrame extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnhapKeyPressed
-
-    private void btloaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btloaAncestorAdded
-        // TODO add your handling code here:
-        ImageIcon icon= new ImageIcon("loa.jpg");
-        btloa.setIcon(icon);
-    }//GEN-LAST:event_btloaAncestorAdded
-
-    private void btsearchAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btsearchAncestorAdded
-        // TODO add your handling code here:
-        ImageIcon icon= new ImageIcon("klup.jpg");
-        btsearch.setIcon(icon);
-    }//GEN-LAST:event_btsearchAncestorAdded
 
     /**
      * @param args the command line arguments
