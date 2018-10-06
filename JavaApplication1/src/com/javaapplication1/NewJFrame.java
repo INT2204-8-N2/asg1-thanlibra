@@ -70,10 +70,10 @@ public class NewJFrame extends javax.swing.JFrame {
         btxoa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btloa = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        btmean = new javax.swing.JTextArea();
         bttimtuongdoi = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        btmean1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dictionary");
@@ -156,13 +156,6 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        btmean.setColumns(20);
-        btmean.setFont(new java.awt.Font("Monospaced", 2, 12)); // NOI18N
-        btmean.setLineWrap(true);
-        btmean.setRows(5);
-        btmean.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(btmean);
-
         bttimtuongdoi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         bttimtuongdoi.setText("Find");
         bttimtuongdoi.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +167,13 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 10)); // NOI18N
         jLabel2.setText("Tìm tương đối");
 
+        btmean1.setBackground(new java.awt.Color(255, 255, 255));
+        btmean1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btmean1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btmean1.setOpaque(true);
+        btmean1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jScrollPane2.setViewportView(btmean1);
+
         javax.swing.GroupLayout DictionaryLayout = new javax.swing.GroupLayout(Dictionary);
         Dictionary.setLayout(DictionaryLayout);
         DictionaryLayout.setHorizontalGroup(
@@ -183,8 +183,8 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DictionaryLayout.createSequentialGroup()
                         .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(btnhap, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btmodify)
@@ -197,12 +197,12 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(DictionaryLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btloa)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btloa))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         DictionaryLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btmodify, btthem, btxoa});
@@ -217,7 +217,7 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btsearch)
                             .addComponent(btnhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btthem)
                         .addGap(18, 18, 18)
                         .addComponent(btmodify)
@@ -225,34 +225,35 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(btxoa)
                         .addGap(44, 44, 44))
                     .addGroup(DictionaryLayout.createSequentialGroup()
-                        .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DictionaryLayout.createSequentialGroup()
+                        .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(DictionaryLayout.createSequentialGroup()
                                 .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(bttimtuongdoi)
                                     .addComponent(jLabel2))
-                                .addGap(40, 40, 40))
-                            .addGroup(DictionaryLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DictionaryLayout.createSequentialGroup()
                                 .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(DictionaryLayout.createSequentialGroup()
                                         .addGap(8, 8, 8)
                                         .addComponent(btloa)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1))
-                        .addContainerGap())))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2)))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Dictionary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Dictionary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Dictionary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Dictionary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -286,11 +287,11 @@ public class NewJFrame extends javax.swing.JFrame {
         javaconnect jav= new javaconnect();
         String wordE=btnhap.getText();
         if(jav.find(wordE)==" "){
-            btmean.setText("");
+            btmean1.setText("");
             JOptionPane.showMessageDialog(null,"NOT Found!!");
         }
         else {
-            btmean.setText(jav.find(wordE));
+            btmean1.setText("<html>"+jav.find(wordE)+"</html>");
         }
     }//GEN-LAST:event_btsearchActionPerformed
 
@@ -324,7 +325,7 @@ public class NewJFrame extends javax.swing.JFrame {
             for (i = 0; (line = br.readLine()) != null; i++){
                 String[] a = line.split("\\s", 2);
                 if(value.equals(a[0])==true){
-                    btmean.setText(jav.find(a[0]));
+                    btmean1.setText("<html>"+jav.find(a[0])+"</html>");
                     btnhap.setText(a[0]);
                 }
             }
@@ -413,7 +414,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Dictionary;
     private javax.swing.JList btlist;
     private javax.swing.JButton btloa;
-    private javax.swing.JTextArea btmean;
+    private javax.swing.JLabel btmean1;
     private javax.swing.JButton btmodify;
     private javax.swing.JTextField btnhap;
     private javax.swing.JButton btsearch;
