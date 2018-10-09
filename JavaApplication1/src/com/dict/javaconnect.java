@@ -26,8 +26,9 @@ import java.util.Set;
  */
 public class javaconnect {
     Dictionary newdict= new Dictionary();
+    Dictionary lsdict = new Dictionary();
+    //ket noi sql
     private Connection connect() {
-        // SQLite connection string
         Connection conn=null;
         String url = "jdbc:sqlite:dictionaries.db";
       conn = null;
@@ -37,18 +38,14 @@ public class javaconnect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-       // System.out.print("Thanh cong");
         return conn;
     }
     //hàm in ra tất cả các từ
    public void selectAll(){
-        String sql = "SELECT idx, word, detail FROM tbl_edict";
-        
+        String sql = "SELECT idx, word, detail FROM tbl_edict";        
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            
-            // loop through the result set
             while (rs.next()) {
                 System.out.println(rs.getInt("idx") +  "\t" + 
                                    rs.getString("word") + "\t" +
@@ -56,6 +53,25 @@ public class javaconnect {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+   //hàm ghi từ ra file txt
+    public void dictionaryExportToFile(String filename){
+        try {
+            
+            File f = new File(filename);
+            FileWriter fw = new FileWriter(f);
+            Set<String> keySet= newdict.words.keySet();
+            fw.write("\r\n");
+            for(String i: keySet) {
+                //Bước 2: Ghi dữ liệu
+                String s= i+" "+ newdict.words.get(i)+"\r\n";
+                fw.write(s);                
+            }
+           
+            fw.close();
+        } catch (IOException ex) {
+            System.out.println("Can't write to file " + ex);
         }
     }
    //hàm chèn từ
@@ -81,14 +97,14 @@ public class javaconnect {
         }
         return 0;
     }
+    //hàm xóa từ
     public int delete(String word) {
         String sql = "DELETE FROM tbl_edict WHERE word = ?";
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             if(this.find(word)!=" "){           
                 pstmt.setString(1, word);            
-                pstmt.executeUpdate();
-                
+                pstmt.executeUpdate();                
             }
             else return 2;
         } catch (SQLException e) {
@@ -97,19 +113,15 @@ public class javaconnect {
         }
         return 1;
     }
+    //hàm tìm kiếm từ
     public String find(String word) {
-        String sql = "SELECT idx, word, detail FROM tbl_edict";
-        
+        String sql = "SELECT idx, word, detail FROM tbl_edict"; 
+        lsdict.words.put(word, "");
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            
-            // loop through the result set
             while (rs.next()) {
                 if(word.equals(rs.getString("word"))==true){
-               // System.out.println(rs.getInt("idx") +  "\t" + 
-                                  // rs.getString("word") + "\t" +
-                                  // rs.getString("detail"));
                 String s=rs.getString("detail");
                 return s;}
             }
@@ -118,8 +130,10 @@ public class javaconnect {
         }
         return " ";
     }
+    //hàm tìm kiếm tương đối
     public int findtd(String word) {
         String sql = "SELECT idx, word, detail FROM tbl_edict";
+        lsdict.words.put(word, "");
         word=word.toLowerCase();
         int i=0;
         try (Connection conn = this.connect();
@@ -132,26 +146,10 @@ public class javaconnect {
                         i++;
                         String m= Integer.toString(i);
                         newdict.words.put(rs.getString("word"),m);
-                       //System.out.println(rs.getInt("idx") +  "\t" + rs.getString("word") + "\t" +rs.getString("detail"));
                     }
                 }               
             }
-            try {
-            //Bước 1: Tạo đối tượng luồng và liên kết nguồn dữ liệu
-                File f = new File("newdic.txt");
-                FileWriter fw = new FileWriter(f);
-                Set<String> keySet1= newdict.words.keySet();
-                fw.write("\r\n");
-                for(String k: keySet1) {
-                //Bước 2: Ghi dữ liệu
-                    String s= k+" "+ newdict.words.get(k)+"\r\n";
-                    fw.write(s);                
-                }
-                //Bước 3: Đóng luồng
-                fw.close();
-            } catch (IOException ex) {
-                System.out.println("Can't write to file " + ex);
-            }
+            this.dictionaryExportToFile("newdic.txt");
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -160,8 +158,5 @@ public class javaconnect {
         else return 0;
     }
     public static void main(String[] args) {
-        javaconnect app = new javaconnect();
-        app.findtd("hap");
-      
     }
 }

@@ -167,7 +167,7 @@ public class Sua extends javax.swing.JFrame {
                 Sua s= new Sua();
                 s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 s.setVisible(true);
-                s.setLocation(500, 300);
+                
             }
         });
     }

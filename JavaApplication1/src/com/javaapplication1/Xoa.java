@@ -138,7 +138,7 @@ public class Xoa extends javax.swing.JFrame {
             public void run() {
                 Xoa m= new Xoa();
                 m.setVisible(true);
-                m.setLocation(500, 300);
+               
             }
         });
     }

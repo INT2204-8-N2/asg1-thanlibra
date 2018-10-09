@@ -25,10 +25,6 @@ import javax.swing.WindowConstants;
  * @author CCNE
  */
 public class NewJFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form NewJFrame
-     */
     public NewJFrame() {
         initComponents();
     }
@@ -47,8 +43,7 @@ public class NewJFrame extends javax.swing.JFrame {
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        
+        }        
         btlist.setModel(model);
     }
     /**
@@ -71,7 +66,6 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btloa = new javax.swing.JButton();
         bttimtuongdoi = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         btmean1 = new javax.swing.JLabel();
 
@@ -89,6 +83,7 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         btsearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btsearch.setToolTipText("Tìm từ tuyệt đối");
         btsearch.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -104,6 +99,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        btlist.setToolTipText("Danh sách từ");
         btlist.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 btlistValueChanged(evt);
@@ -113,6 +109,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         btthem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btthem.setText("Insert");
+        btthem.setToolTipText("Thêm từ");
         btthem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btthemActionPerformed(evt);
@@ -121,6 +118,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         btmodify.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btmodify.setText("Modify");
+        btmodify.setToolTipText("Sửa từ");
         btmodify.setAlignmentY(0.3F);
         btmodify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +128,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         btxoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btxoa.setText("Delete");
+        btxoa.setToolTipText("Xóa từ");
         btxoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btxoaActionPerformed(evt);
@@ -141,6 +140,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel1.setText("TỪ ĐIỂN ANH - VIỆT");
 
         btloa.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btloa.setToolTipText("Phát âm tiếng anh");
         btloa.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -158,17 +158,16 @@ public class NewJFrame extends javax.swing.JFrame {
 
         bttimtuongdoi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         bttimtuongdoi.setText("Find");
+        bttimtuongdoi.setToolTipText("Tìm từ tương đối ");
         bttimtuongdoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttimtuongdoiActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 10)); // NOI18N
-        jLabel2.setText("Tìm tương đối");
-
         btmean1.setBackground(new java.awt.Color(255, 255, 255));
         btmean1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btmean1.setToolTipText("Hiển thị thông tin của từ");
         btmean1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btmean1.setOpaque(true);
         btmean1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -191,10 +190,7 @@ public class NewJFrame extends javax.swing.JFrame {
                             .addComponent(btxoa)
                             .addComponent(btthem)
                             .addComponent(btsearch)))
-                    .addGroup(DictionaryLayout.createSequentialGroup()
-                        .addComponent(bttimtuongdoi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(bttimtuongdoi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DictionaryLayout.createSequentialGroup()
@@ -227,9 +223,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addGroup(DictionaryLayout.createSequentialGroup()
                         .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(DictionaryLayout.createSequentialGroup()
-                                .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(bttimtuongdoi)
-                                    .addComponent(jLabel2))
+                                .addComponent(bttimtuongdoi)
                                 .addGap(40, 40, 40)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DictionaryLayout.createSequentialGroup()
@@ -281,9 +275,6 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btthemActionPerformed
 
     private void btsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsearchActionPerformed
-        // TODO add your handling code here:
-        //DictionaryManagement sea= new DictionaryManagement();
-        //sea.insertfromFile();
         javaconnect jav= new javaconnect();
         String wordE=btnhap.getText();
         if(jav.find(wordE)==" "){
@@ -308,7 +299,6 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         }catch(NullPointerException e){
             return;
-           // JOptionPane.showMessageDialog(null, "error");
         }
     }//GEN-LAST:event_bttimtuongdoiActionPerformed
 
@@ -333,7 +323,7 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error!!");
             e.printStackTrace();
-        }
+        } 
     }//GEN-LAST:event_btlistValueChanged
 
     private void btloaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btloaAncestorAdded
@@ -347,6 +337,13 @@ public class NewJFrame extends javax.swing.JFrame {
         ImageIcon icon= new ImageIcon("klup.jpg");
         btsearch.setIcon(icon);
     }//GEN-LAST:event_btsearchAncestorAdded
+
+    private void btloaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btloaActionPerformed
+        // TODO add your handling code here:
+        String word= btnhap.getText();
+        speak sp= new speak();
+        sp.speech(word);
+    }//GEN-LAST:event_btloaActionPerformed
 
     private void btnhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnhapKeyPressed
         // TODO add your handling code here:
@@ -363,13 +360,6 @@ public class NewJFrame extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnhapKeyPressed
-
-    private void btloaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btloaActionPerformed
-        // TODO add your handling code here:
-        String word= btnhap.getText();
-        speak sp= new speak();
-        sp.speech(word);
-    }//GEN-LAST:event_btloaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,8 +390,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               
+            public void run() {              
                 NewJFrame dic =new NewJFrame();
                 dic.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 dic.setVisible(true);
@@ -422,7 +411,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton bttimtuongdoi;
     private javax.swing.JButton btxoa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

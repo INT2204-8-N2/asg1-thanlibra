@@ -20,7 +20,6 @@ public class speak {
         syntheticVoice.deallocate();
     }
     public static void main(String[] args) {
-        speak s= new speak();
-        s.speech("Hello world");
+        
     }
 }

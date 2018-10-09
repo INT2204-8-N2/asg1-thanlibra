@@ -169,7 +169,7 @@ public class Them extends javax.swing.JFrame {
             public void run() {
                 Them t =new Them();
                 t.setVisible(true);
-                t.setLocation(500, 300);
+                
             }
         });
     }
