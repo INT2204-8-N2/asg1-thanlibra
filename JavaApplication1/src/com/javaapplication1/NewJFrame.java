@@ -68,6 +68,7 @@ public class NewJFrame extends javax.swing.JFrame {
         bttimtuongdoi = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         btmean1 = new javax.swing.JLabel();
+        bttran = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dictionary");
@@ -173,6 +174,21 @@ public class NewJFrame extends javax.swing.JFrame {
         btmean1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jScrollPane2.setViewportView(btmean1);
 
+        bttran.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                bttranAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        bttran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttranActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DictionaryLayout = new javax.swing.GroupLayout(Dictionary);
         Dictionary.setLayout(DictionaryLayout);
         DictionaryLayout.setHorizontalGroup(
@@ -189,7 +205,8 @@ public class NewJFrame extends javax.swing.JFrame {
                             .addComponent(btmodify)
                             .addComponent(btxoa)
                             .addComponent(btthem)
-                            .addComponent(btsearch)))
+                            .addComponent(btsearch)
+                            .addComponent(bttran)))
                     .addComponent(bttimtuongdoi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DictionaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,6 +231,8 @@ public class NewJFrame extends javax.swing.JFrame {
                             .addComponent(btsearch)
                             .addComponent(btnhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bttran)
+                        .addGap(18, 18, 18)
                         .addComponent(btthem)
                         .addGap(18, 18, 18)
                         .addComponent(btmodify)
@@ -361,6 +380,19 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnhapKeyPressed
 
+    private void bttranAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bttranAncestorAdded
+        // TODO add your handling code here:
+        ImageIcon icon= new ImageIcon("ggtran.png");
+        bttran.setIcon(icon);
+    }//GEN-LAST:event_bttranAncestorAdded
+
+    private void bttranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttranActionPerformed
+        // TODO add your handling code here:
+        Translate tran= new Translate();
+        tran.setVisible(true);
+        tran.setLocation(400, 200);
+    }//GEN-LAST:event_bttranActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,6 +441,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btsearch;
     private javax.swing.JButton btthem;
     private javax.swing.JButton bttimtuongdoi;
+    private javax.swing.JButton bttran;
     private javax.swing.JButton btxoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

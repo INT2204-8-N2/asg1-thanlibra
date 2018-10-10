@@ -26,7 +26,7 @@ import java.util.Set;
  */
 public class javaconnect {
     Dictionary newdict= new Dictionary();
-    Dictionary lsdict = new Dictionary();
+    
     //ket noi sql
     private Connection connect() {
         Connection conn=null;
@@ -41,7 +41,7 @@ public class javaconnect {
         return conn;
     }
     //hàm in ra tất cả các từ
-   public void selectAll(){
+  /* public void selectAll(){
         String sql = "SELECT idx, word, detail FROM tbl_edict";        
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -54,7 +54,7 @@ public class javaconnect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
    //hàm ghi từ ra file txt
     public void dictionaryExportToFile(String filename){
         try {
@@ -93,8 +93,10 @@ public class javaconnect {
     public int update(String sword, String word, String detail) {
         if(this.delete(sword)==1){
             this.insert(word, detail);
+            //tra ve 1 neu sua thanh cong
             return 1;
         }
+        //tra ve 0 khi khong tim thay tu can sua
         return 0;
     }
     //hàm xóa từ
@@ -106,34 +108,37 @@ public class javaconnect {
                 pstmt.setString(1, word);            
                 pstmt.executeUpdate();                
             }
-            else return 2;
+            else return 2;// tra ve 2 khi khong tim thay tu can xoa
         } catch (SQLException e) {
+            //ket noi khong thanh cong voi database
             System.out.println(e.getMessage());
             return 0;
         }
+        //tra ve 1 khi tim thay va xoa thanh cong
         return 1;
     }
     //hàm tìm kiếm từ
     public String find(String word) {
         String sql = "SELECT idx, word, detail FROM tbl_edict"; 
-        lsdict.words.put(word, "");
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            while (rs.next()) {
+            while (rs.next()) {//vong lap truy van 
                 if(word.equals(rs.getString("word"))==true){
                 String s=rs.getString("detail");
+                //tra ve nghia cua tu can tim
                 return s;}
             }
         } catch (SQLException e) {
+            //ket noi database khong thanh cong, in ra loi
             System.out.println(e.getMessage());
         }
+        //tra ve " " khi khonng tim thay tu can tim
         return " ";
     }
     //hàm tìm kiếm tương đối
     public int findtd(String word) {
         String sql = "SELECT idx, word, detail FROM tbl_edict";
-        lsdict.words.put(word, "");
         word=word.toLowerCase();
         int i=0;
         try (Connection conn = this.connect();
@@ -144,8 +149,7 @@ public class javaconnect {
                     String a= rs.getString("word").substring(0,word.length());
                     if(a.equals(word)){
                         i++;
-                        String m= Integer.toString(i);
-                        newdict.words.put(rs.getString("word"),m);
+                        newdict.words.put(rs.getString("word"),"");
                     }
                 }               
             }
@@ -154,8 +158,8 @@ public class javaconnect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        if(i!=0) return 1;
-        else return 0;
+        if(i!=0) return 1;//tra ve 1 khi so tu tuong dong khac 0
+        else return 0;//tra ve 0 khi khong co tu nao tuong dong
     }
     public static void main(String[] args) {
     }

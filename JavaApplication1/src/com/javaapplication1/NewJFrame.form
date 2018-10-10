@@ -64,6 +64,7 @@
                               <Component id="btxoa" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btthem" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btsearch" min="-2" max="-2" attributes="0"/>
+                              <Component id="bttran" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="bttimtuongdoi" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -93,6 +94,8 @@
                               <Component id="btnhap" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="bttran" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btthem" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btmodify" min="-2" max="-2" attributes="0"/>
@@ -261,6 +264,12 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="bttran">
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bttranAncestorAdded"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttranActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
