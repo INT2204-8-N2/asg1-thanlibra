@@ -40,22 +40,6 @@ public class javaconnect {
         }
         return conn;
     }
-    //hàm in ra tất cả các từ
-  /* public void selectAll(){
-        String sql = "SELECT idx, word, detail FROM tbl_edict";        
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            while (rs.next()) {
-                System.out.println(rs.getInt("idx") +  "\t" + 
-                                   rs.getString("word") + "\t" +
-                                   rs.getString("detail"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
-   //hàm ghi từ ra file txt
     public void dictionaryExportToFile(String filename){
         try {
             
@@ -78,7 +62,7 @@ public class javaconnect {
     public int insert(String word, String detail) {
         String sql = "INSERT INTO tbl_edict(word,detail) VALUES(?,?)";
         try (Connection conn = this.connect();PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            if(this.find(word)==" "){   
+            if(this.find(word)=="0"){   
                 pstmt.setString(1, word);
                 pstmt.setString(2, detail);
                 pstmt.executeUpdate();
@@ -104,7 +88,7 @@ public class javaconnect {
         String sql = "DELETE FROM tbl_edict WHERE word = ?";
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            if(this.find(word)!=" "){           
+            if(this.find(word)!="0"){           
                 pstmt.setString(1, word);            
                 pstmt.executeUpdate();                
             }
@@ -119,43 +103,38 @@ public class javaconnect {
     }
     //hàm tìm kiếm từ
     public String find(String word) {
-        String sql = "SELECT idx, word, detail FROM tbl_edict"; 
+       String sql = "SELECT idx, word, detail FROM tbl_edict Where word=?";
         try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            while (rs.next()) {//vong lap truy van 
-                if(word.equals(rs.getString("word"))==true){
+             PreparedStatement pstmt  = conn.prepareStatement(sql)){            
+            // set the value
+            pstmt.setString(1, word);
+            ResultSet rs  = pstmt.executeQuery();
+            while (rs.next()) {
                 String s=rs.getString("detail");
                 //tra ve nghia cua tu can tim
-                return s;}
-            }
+                return s;}          
         } catch (SQLException e) {
             //ket noi database khong thanh cong, in ra loi
             System.out.println(e.getMessage());
         }
         //tra ve " " khi khonng tim thay tu can tim
-        return " ";
+        return "0";
     }
     //hàm tìm kiếm tương đối
     public int findtd(String word) {
-        String sql = "SELECT idx, word, detail FROM tbl_edict";
+        String sql = "SELECT idx, word, detail FROM tbl_edict WHERE word like '"+word+"%'";
         word=word.toLowerCase();
         int i=0;
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            while (rs.next()) {
-                if(word.length()<=rs.getString("word").length()){
-                    String a= rs.getString("word").substring(0,word.length());
-                    if(a.equals(word)){
-                        i++;
-                        newdict.words.put(rs.getString("word"),"");
-                    }
-                }               
+            while (rs.next()) {                
+                i++;//tang i khi co tu tuong dong
+                newdict.words.put(rs.getString("word"),"");//put tu vao mang                              
             }
-            this.dictionaryExportToFile("newdic.txt");
-            
+            this.dictionaryExportToFile("newdic.txt");// put mang tu vao file txt de luu tru           
         } catch (SQLException e) {
+            //ket noi database khong thanh cong
             System.out.println(e.getMessage());
         }
         if(i!=0) return 1;//tra ve 1 khi so tu tuong dong khac 0

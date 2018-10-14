@@ -77,6 +77,7 @@ public class NewJFrame extends javax.swing.JFrame {
         Dictionary.setBackground(new java.awt.Color(0, 102, 204));
 
         btnhap.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnhap.setToolTipText("nhập từ cần tìm");
         btnhap.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 btnhapKeyPressed(evt);
@@ -174,6 +175,7 @@ public class NewJFrame extends javax.swing.JFrame {
         btmean1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jScrollPane2.setViewportView(btmean1);
 
+        bttran.setToolTipText("Dịch đoạn văn");
         bttran.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -296,8 +298,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private void btsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsearchActionPerformed
         javaconnect jav= new javaconnect();
         String wordE=btnhap.getText();
-        if(jav.find(wordE)==" "){
-            btmean1.setText("");
+        if(jav.find(wordE)=="0"){
+            btmean1.setText("không có từ cần tìm");
             JOptionPane.showMessageDialog(null,"NOT Found!!");
         }
         else {
