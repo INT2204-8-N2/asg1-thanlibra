@@ -1,0 +1,2 @@
+dict.Word
+dict.Dictionary
