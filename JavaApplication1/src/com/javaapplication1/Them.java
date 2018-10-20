@@ -129,11 +129,16 @@ public class Them extends javax.swing.JFrame {
         String tword= btWord.getText();
         String tmean= btmean.getText();
         javaconnect jav= new javaconnect();
-        if(jav.insert(tword, tmean)==1){
-            JOptionPane.showMessageDialog(null, "Complete!");
+        if(tword.length()!=0){
+            if(jav.insert(tword, tmean)==1){
+                JOptionPane.showMessageDialog(null, "Complete!");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Từ đã có sẵn!");
+            }
         }
         else {
-            JOptionPane.showMessageDialog(null, "Từ đã có sẵn!");
+            JOptionPane.showMessageDialog(null, "please type something");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

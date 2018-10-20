@@ -5,21 +5,18 @@
  */
 package com.javaapplication1;
 
-import com.dict.Dictionary;
+
 import com.dict.javaconnect;
 import com.dict.speak;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.ListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
-
 /**
  *
  * @author CCNE
@@ -28,8 +25,9 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
     }
+    @SuppressWarnings("unchecked")
     private void initData(String namefile){
-        DefaultListModel model= new DefaultListModel();
+        DefaultListModel <String> model= new DefaultListModel<>();      
         File file = new File(namefile);
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -79,8 +77,8 @@ public class NewJFrame extends javax.swing.JFrame {
         btnhap.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnhap.setToolTipText("nhập từ cần tìm");
         btnhap.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnhapKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnhapKeyReleased(evt);
             }
         });
 
@@ -216,8 +214,8 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btloa))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         DictionaryLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btmodify, btthem, btxoa});
@@ -298,7 +296,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void btsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsearchActionPerformed
         javaconnect jav= new javaconnect();
         String wordE=btnhap.getText();
-        if(jav.find(wordE)=="0"){
+        if(jav.find(wordE)=="khong tim thay"){
             btmean1.setText("không có từ cần tìm");
             JOptionPane.showMessageDialog(null,"NOT Found!!");
         }
@@ -326,25 +324,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void btlistValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_btlistValueChanged
         // TODO add your handling code here:
         javaconnect jav= new javaconnect();
-        String value= btlist.getSelectedValue().toString();
-        File file = new File("newdic.txt");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            br.readLine();
-            int i = 0;
-            String line = "";
-            for (i = 0; (line = br.readLine()) != null; i++){
-                String[] a = line.split("\\s", 2);
-                if(value.equals(a[0])==true){
-                    btmean1.setText("<html>"+jav.find(a[0])+"</html>");
-                    btnhap.setText(a[0]);
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error!!");
-            e.printStackTrace();
-        } 
+        String value= btlist.getSelectedValue().toString();       
+        btmean1.setText("<html>"+jav.find(value)+"</html>");
+        btnhap.setText(value);
+                
     }//GEN-LAST:event_btlistValueChanged
 
     private void btloaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btloaAncestorAdded
@@ -366,7 +349,20 @@ public class NewJFrame extends javax.swing.JFrame {
         sp.speech(word);
     }//GEN-LAST:event_btloaActionPerformed
 
-    private void btnhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnhapKeyPressed
+    private void bttranAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bttranAncestorAdded
+        // TODO add your handling code here:
+        ImageIcon icon= new ImageIcon("ggtran.png");
+        bttran.setIcon(icon);
+    }//GEN-LAST:event_bttranAncestorAdded
+
+    private void bttranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttranActionPerformed
+        // TODO add your handling code here:
+        Translate tran= new Translate();
+        tran.setVisible(true);
+        tran.setLocation(400, 200);
+    }//GEN-LAST:event_bttranActionPerformed
+
+    private void btnhapKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnhapKeyReleased
         // TODO add your handling code here:
         javaconnect jav= new javaconnect();
         String Engtd=btnhap.getText();
@@ -380,20 +376,7 @@ public class NewJFrame extends javax.swing.JFrame {
         }catch(NullPointerException e){
             return;
         }
-    }//GEN-LAST:event_btnhapKeyPressed
-
-    private void bttranAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bttranAncestorAdded
-        // TODO add your handling code here:
-        ImageIcon icon= new ImageIcon("ggtran.png");
-        bttran.setIcon(icon);
-    }//GEN-LAST:event_bttranAncestorAdded
-
-    private void bttranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttranActionPerformed
-        // TODO add your handling code here:
-        Translate tran= new Translate();
-        tran.setVisible(true);
-        tran.setLocation(400, 200);
-    }//GEN-LAST:event_bttranActionPerformed
+    }//GEN-LAST:event_btnhapKeyReleased
 
     /**
      * @param args the command line arguments

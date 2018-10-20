@@ -128,8 +128,11 @@ public class Sua extends javax.swing.JFrame {
         if(jav.update(sword, word, mean)==1){
             JOptionPane.showMessageDialog(null, "Complete!");
         }
-        else {
+        else if(jav.update(sword, word, mean)==0) {
             JOptionPane.showMessageDialog(null, "Can't Repair!!!, Because not found");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Sửa thành từ đã có sẵn");
         }
     }//GEN-LAST:event_ModifyActionPerformed
 

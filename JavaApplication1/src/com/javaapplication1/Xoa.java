@@ -4,24 +4,70 @@
  * and open the template in the editor.
  */
 package com.javaapplication1;
-
-
 import com.dict.javaconnect;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
+
 
 /**
  *
  * @author CCNE
  */
+class Dictionary {
+    Map<String,String> words =new HashMap<String,String>();
+}
+class Word {
+    String spelling,explain;
+}
 public class Xoa extends javax.swing.JFrame {
-
+    
+    Dictionary dicc= new Dictionary();
+    public void insert(){
+        File file = new File("lsxoa.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            br.readLine();
+            int i = 0;
+            String line = "";
+            for (i = 0; (line = br.readLine()) != null; i++){
+                String[] a = line.split("\\s", 2);
+               dicc.words.put(a[0], a[1]);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }              
+    }
+    public void write(){
+        try {           
+            File f = new File("lsxoa.txt");
+            FileWriter fw = new FileWriter(f);          
+            Set<String> keySet= dicc.words.keySet();
+            fw.write("\r\n");
+            for(String i: keySet) {               
+                String s= i+" "+ dicc.words.get(i)+"\r\n";
+                fw.write(s);                
+            }          
+            fw.close();
+        } catch (IOException ex) {
+            System.out.println("Can't write to file " + ex);
+        }
+    }
     /**
      * Creates new form Xoa
      */
     public Xoa() {
-        initComponents();
+        initComponents();       
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -38,6 +84,7 @@ public class Xoa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DEngword = new javax.swing.JTextField();
         btxoa = new javax.swing.JButton();
+        undo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detele word");
@@ -57,6 +104,13 @@ public class Xoa extends javax.swing.JFrame {
             }
         });
 
+        undo.setText("Undo");
+        undo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,6 +126,8 @@ public class Xoa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(undo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btxoa)
                 .addGap(72, 72, 72))
         );
@@ -85,7 +141,9 @@ public class Xoa extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(DEngword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btxoa)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btxoa)
+                    .addComponent(undo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -93,9 +151,12 @@ public class Xoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btxoaActionPerformed
-        // TODO add your handling code here:
-        javaconnect jav= new javaconnect();
-        String Eng = DEngword.getText();
+        // TODO add your handling code here:      
+        javaconnect jav= new javaconnect(); 
+        this.insert();
+        String Eng = DEngword.getText();       
+            dicc.words.put(Eng, jav.find(Eng)); 
+            this.write();
             if(jav.delete(Eng)==1){
                 JOptionPane.showMessageDialog(null, "Complete!");
             }
@@ -106,6 +167,13 @@ public class Xoa extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error format");    
             }
     }//GEN-LAST:event_btxoaActionPerformed
+
+    private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
+        
+       lsxoa ls= new lsxoa();
+       ls.setVisible(true);
+       ls.setLocation(500, 200);
+    }//GEN-LAST:event_undoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +215,7 @@ public class Xoa extends javax.swing.JFrame {
     private javax.swing.JButton btxoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton undo;
     // End of variables declaration//GEN-END:variables
 
 }

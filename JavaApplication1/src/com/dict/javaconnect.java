@@ -30,7 +30,7 @@ public class javaconnect {
     //ket noi sql
     private Connection connect() {
         Connection conn=null;
-        String url = "jdbc:sqlite:dictionaries.db";
+        String url = "jdbc:sqlite:dictionaries1.db";
       conn = null;
         try {
             
@@ -41,8 +41,7 @@ public class javaconnect {
         return conn;
     }
     public void dictionaryExportToFile(String filename){
-        try {
-            
+        try {           
             File f = new File(filename);
             FileWriter fw = new FileWriter(f);
             Set<String> keySet= newdict.words.keySet();
@@ -51,20 +50,19 @@ public class javaconnect {
                 //Bước 2: Ghi dữ liệu
                 String s= i+" "+ newdict.words.get(i)+"\r\n";
                 fw.write(s);                
-            }
-           
+            }          
             fw.close();
         } catch (IOException ex) {
             System.out.println("Can't write to file " + ex);
         }
     }
    //hàm chèn từ
-    public int insert(String word, String detail) {
-        String sql = "INSERT INTO tbl_edict(word,detail) VALUES(?,?)";
+    public int insert(String word, String info) {
+        String sql = "INSERT INTO Dictionary(word,info) VALUES(?,?)";
         try (Connection conn = this.connect();PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            if(this.find(word)=="0"){   
+            if(this.find(word)=="khong tim thay"){   
                 pstmt.setString(1, word);
-                pstmt.setString(2, detail);
+                pstmt.setString(2, info);
                 pstmt.executeUpdate();
                 return 1;
             }
@@ -74,21 +72,25 @@ public class javaconnect {
         return 0;
     }
     //hàm sua từ
-    public int update(String sword, String word, String detail) {
+    public int update(String sword, String word, String info) {
+        String Eng = sword;
+        String mean= this.find(Eng);
         if(this.delete(sword)==1){
-            this.insert(word, detail);
-            //tra ve 1 neu sua thanh cong
-            return 1;
+            if(this.insert(word, info)==1) return 1;
+            else {
+                this.insert(Eng, mean);
+                return 2;
+            }
         }
         //tra ve 0 khi khong tim thay tu can sua
         return 0;
     }
     //hàm xóa từ
     public int delete(String word) {
-        String sql = "DELETE FROM tbl_edict WHERE word = ?";
+        String sql = "DELETE FROM Dictionary WHERE word = ?";
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            if(this.find(word)!="0"){           
+            if(this.find(word)!="khong tim thay"){           
                 pstmt.setString(1, word);            
                 pstmt.executeUpdate();                
             }
@@ -103,27 +105,26 @@ public class javaconnect {
     }
     //hàm tìm kiếm từ
     public String find(String word) {
-       String sql = "SELECT idx, word, detail FROM tbl_edict Where word=?";
+       String sql = "SELECT id, word, info FROM Dictionary Where word=?";
         try (Connection conn = this.connect();
              PreparedStatement pstmt  = conn.prepareStatement(sql)){            
             // set the value
             pstmt.setString(1, word);
             ResultSet rs  = pstmt.executeQuery();
             while (rs.next()) {
-                String s=rs.getString("detail");
+                String s=rs.getString("info");
                 //tra ve nghia cua tu can tim
                 return s;}          
         } catch (SQLException e) {
             //ket noi database khong thanh cong, in ra loi
             System.out.println(e.getMessage());
         }
-        //tra ve " " khi khonng tim thay tu can tim
-        return "0";
+        //tra ve "khong tim thay " khi khonng tim thay tu can tim
+        return "khong tim thay";
     }
     //hàm tìm kiếm tương đối
     public int findtd(String word) {
-        String sql = "SELECT idx, word, detail FROM tbl_edict WHERE word like '"+word+"%'";
-        word=word.toLowerCase();
+        String sql = "SELECT id, word, info FROM Dictionary WHERE word like '"+word+"%'";       
         int i=0;
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
