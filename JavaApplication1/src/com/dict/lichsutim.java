@@ -54,4 +54,9 @@ public class lichsutim {
         lsdic.words.put(word, "");
         this.write();
     }
+    public void xoatu(String word){
+        this.insert();
+        lsdic.words.remove(word);
+        this.write();
+    }
 }

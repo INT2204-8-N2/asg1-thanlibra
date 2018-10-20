@@ -4,7 +4,6 @@ half
 hamlet 
 homophonous 
 hall 
-halm 
 homogenies 
 halo 
 helicon 
@@ -854,7 +853,7 @@ hepaticas
 hamster 
 hulling 
 hairbrush 
-Homogeneous product functiÃ³n 
+Homogeneous product functión 
 hijacking 
 hickeys 
 horologists 
@@ -1491,7 +1490,7 @@ hanky
 hoaxing 
 half holiday 
 horrid 
-habituÃ© 
+habitué 
 hunched 
 heralding 
 hoody 

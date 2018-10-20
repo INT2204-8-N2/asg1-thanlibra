@@ -5,6 +5,7 @@
  */
 package com.javaapplication1;
 import com.dict.javaconnect;
+import com.dict.lichsutim;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -152,13 +153,15 @@ public class Xoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btxoaActionPerformed
-        // TODO add your handling code here:      
+        // TODO add your handling code here:   
+        lichsutim ls= new lichsutim();
         javaconnect jav= new javaconnect(); 
         this.insert();
         String Eng = DEngword.getText();       
             dicc.words.put(Eng, jav.find(Eng)); 
             this.write();
             if(jav.delete(Eng)==1){
+                ls.xoatu(Eng);
                 JOptionPane.showMessageDialog(null, "Complete!");
             }
             else if(jav.delete(Eng)==2){

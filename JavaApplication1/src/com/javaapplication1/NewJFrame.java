@@ -278,7 +278,7 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         Xoa xoa=new Xoa();
         xoa.setVisible(true);
-        xoa.setLocation(500, 300);   
+        xoa.setLocation(500, 300);        
     }//GEN-LAST:event_btxoaActionPerformed
 
     private void btmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmodifyActionPerformed
