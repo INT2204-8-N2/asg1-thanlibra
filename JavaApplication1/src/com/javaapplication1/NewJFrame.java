@@ -7,6 +7,7 @@ package com.javaapplication1;
 
 
 import com.dict.javaconnect;
+import com.dict.lichsutim;
 import com.dict.speak;
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,6 +25,7 @@ import javax.swing.JOptionPane;
 public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
+        this.initData("lsdic.txt");
     }
     @SuppressWarnings("unchecked")
     private void initData(String namefile){
@@ -294,6 +296,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btthemActionPerformed
 
     private void btsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsearchActionPerformed
+        lichsutim ls= new lichsutim();
         javaconnect jav= new javaconnect();
         String wordE=btnhap.getText();
         if(jav.find(wordE)=="khong tim thay"){
@@ -301,6 +304,7 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"NOT Found!!");
         }
         else {
+            ls.luutu(wordE);
             btmean1.setText("<html>"+jav.find(wordE)+"</html>");
         }
     }//GEN-LAST:event_btsearchActionPerformed
@@ -327,7 +331,8 @@ public class NewJFrame extends javax.swing.JFrame {
         String value= btlist.getSelectedValue().toString();       
         btmean1.setText("<html>"+jav.find(value)+"</html>");
         btnhap.setText(value);
-                
+        lichsutim ls= new lichsutim();
+        ls.luutu(value);
     }//GEN-LAST:event_btlistValueChanged
 
     private void btloaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btloaAncestorAdded
@@ -365,9 +370,12 @@ public class NewJFrame extends javax.swing.JFrame {
     private void btnhapKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnhapKeyReleased
         // TODO add your handling code here:
         javaconnect jav= new javaconnect();
-        String Engtd=btnhap.getText();
+        String Engtd=btnhap.getText();        
         try{
-            if(jav.findtd(Engtd)==0){
+            if(Engtd.length()==0){
+                this.initData("lsdic.txt");
+            }
+            else if(jav.findtd(Engtd)==0){
                 this.initData("null.txt");
             }
             else {
@@ -376,6 +384,7 @@ public class NewJFrame extends javax.swing.JFrame {
         }catch(NullPointerException e){
             return;
         }
+        
     }//GEN-LAST:event_btnhapKeyReleased
 
     /**

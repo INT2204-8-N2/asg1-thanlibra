@@ -105,6 +105,7 @@ public class Xoa extends javax.swing.JFrame {
         });
 
         undo.setText("Undo");
+        undo.setToolTipText("lấy lại từ đã xóa");
         undo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 undoActionPerformed(evt);

@@ -84,6 +84,7 @@ public class lsxoa extends javax.swing.JFrame {
         jScrollPane1.setViewportView(btlistt);
 
         btundo.setText("Undo");
+        btundo.setToolTipText("Nhấp để trả lại từ đã xóa");
         btundo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btundoActionPerformed(evt);
