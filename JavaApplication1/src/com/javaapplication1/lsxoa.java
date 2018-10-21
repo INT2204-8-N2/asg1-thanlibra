@@ -9,27 +9,30 @@ import com.dict.javaconnect;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Minh Anh
  */
-
+class Dictionary {
+    Map<String,String> words =new HashMap<String,String>();
+}
+class Word {
+    String spelling,explain;
+}
 public class lsxoa extends javax.swing.JFrame {
-    Dictionary dicc= new Dictionary();
-    Dictionary newdic= new Dictionary();
+    Dictionary dicc= new Dictionary();   
     /**
      * Creates new form lsxoa
      */
     public lsxoa() {
-        initComponents();
+        initComponents(); 
         this.initData();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -48,8 +51,7 @@ public class lsxoa extends javax.swing.JFrame {
                 model.addElement(a[0]);
             }
             br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {           
         }                   
         btlistt.setModel(model);
     }
@@ -103,9 +105,9 @@ public class lsxoa extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(btnhan, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btundo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +118,8 @@ public class lsxoa extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btundo)
-                            .addComponent(btnhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btundo))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -141,8 +143,8 @@ public class lsxoa extends javax.swing.JFrame {
 
     private void btlisttValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_btlisttValueChanged
         // TODO add your handling code here:
-        String value= btlistt.getSelectedValue().toString();         
-            btnhan.setText(value);       
+        String value= btlistt.getSelectedValue().toString();                 
+        btnhan.setText(value);        
     }//GEN-LAST:event_btlisttValueChanged
 
     private void btundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btundoActionPerformed
@@ -156,7 +158,7 @@ public class lsxoa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "từ đã trả lại");
         }
     }//GEN-LAST:event_btundoActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

@@ -119,8 +119,7 @@ public class Sua extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyActionPerformed
-        // TODO add your handling code here:
-       
+        // TODO add your handling code here:       
         javaconnect jav= new javaconnect();
         String sword=btsword.getText();
         String word= btword.getText();

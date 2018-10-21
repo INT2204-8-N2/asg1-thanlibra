@@ -9,7 +9,6 @@ package com.javaapplication1;
 import com.dict.javaconnect;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
 
 /**
  *

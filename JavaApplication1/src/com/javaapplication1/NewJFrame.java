@@ -16,7 +16,6 @@ import java.io.IOException;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 /**
  *
@@ -304,7 +303,7 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"NOT Found!!");
         }
         else {
-            ls.luutu(wordE);
+            ls.luutu(wordE, "lsdic.txt");
             btmean1.setText("<html>"+jav.find(wordE)+"</html>");
         }
     }//GEN-LAST:event_btsearchActionPerformed
@@ -332,7 +331,7 @@ public class NewJFrame extends javax.swing.JFrame {
         btmean1.setText("<html>"+jav.find(value)+"</html>");
         btnhap.setText(value);
         lichsutim ls= new lichsutim();
-        ls.luutu(value);
+        ls.luutu(value, "lsdic.txt");
     }//GEN-LAST:event_btlistValueChanged
 
     private void btloaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btloaAncestorAdded

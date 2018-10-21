@@ -12,6 +12,7 @@ package com.dict;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Dictionary {
     Map<String,String> words =new HashMap<String,String>();
 }

@@ -18,8 +18,8 @@ import java.util.Set;
  */
 public class lichsutim {
     Dictionary lsdic = new Dictionary();
-    public void insert(){
-        File file = new File("lsdic.txt");
+    public void insert(String name){
+        File file = new File(name);
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             br.readLine();
@@ -34,9 +34,9 @@ public class lichsutim {
             e.printStackTrace();
         }              
     }
-    public void write(){
+    public void write(String name){
         try {           
-            File f = new File("lsdic.txt");
+            File f = new File(name);
             FileWriter fw = new FileWriter(f);          
             Set<String> keySet= lsdic.words.keySet();
             fw.write("\r\n");
@@ -49,14 +49,19 @@ public class lichsutim {
             System.out.println("Can't write to file " + ex);
         }
     }
-    public void luutu(String word){
-        this.insert();
+    public void luutu(String word, String name){
+        this.insert(name);
         lsdic.words.put(word, "");
-        this.write();
+        this.write(name);
     }
-    public void xoatu(String word){
-        this.insert();
+    public void luutu2(String word,String mean, String name){
+        this.insert(name);
+        lsdic.words.put(word, mean);
+        this.write(name);
+    }
+    public void xoatu(String word, String name){
+        this.insert(name);
         lsdic.words.remove(word);
-        this.write();
+        this.write(name);
     }
 }

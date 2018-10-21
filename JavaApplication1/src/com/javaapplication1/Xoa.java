@@ -6,16 +6,6 @@
 package com.javaapplication1;
 import com.dict.javaconnect;
 import com.dict.lichsutim;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -24,46 +14,8 @@ import javax.swing.JOptionPane;
  *
  * @author CCNE
  */
-class Dictionary {
-    Map<String,String> words =new HashMap<String,String>();
-}
-class Word {
-    String spelling,explain;
-}
-public class Xoa extends javax.swing.JFrame {
-    
-    Dictionary dicc= new Dictionary();
-    public void insert(){
-        File file = new File("lsxoa.txt");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            br.readLine();
-            int i = 0;
-            String line = "";
-            for (i = 0; (line = br.readLine()) != null; i++){
-                String[] a = line.split("\\s", 2);
-               dicc.words.put(a[0], a[1]);
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }              
-    }
-    public void write(){
-        try {           
-            File f = new File("lsxoa.txt");
-            FileWriter fw = new FileWriter(f);          
-            Set<String> keySet= dicc.words.keySet();
-            fw.write("\r\n");
-            for(String i: keySet) {               
-                String s= i+" "+ dicc.words.get(i)+"\r\n";
-                fw.write(s);                
-            }          
-            fw.close();
-        } catch (IOException ex) {
-            System.out.println("Can't write to file " + ex);
-        }
-    }
+
+public class Xoa extends javax.swing.JFrame {   
     /**
      * Creates new form Xoa
      */
@@ -71,7 +23,6 @@ public class Xoa extends javax.swing.JFrame {
         initComponents();       
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,13 +106,12 @@ public class Xoa extends javax.swing.JFrame {
     private void btxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btxoaActionPerformed
         // TODO add your handling code here:   
         lichsutim ls= new lichsutim();
-        javaconnect jav= new javaconnect(); 
-        this.insert();
+        lichsutim ls2 = new lichsutim();
+        javaconnect jav= new javaconnect();        
         String Eng = DEngword.getText();       
-            dicc.words.put(Eng, jav.find(Eng)); 
-            this.write();
+            ls2.luutu2(Eng, jav.find(Eng), "lsxoa.txt");           
             if(jav.delete(Eng)==1){
-                ls.xoatu(Eng);
+                ls.xoatu(Eng, "lsdic.txt");
                 JOptionPane.showMessageDialog(null, "Complete!");
             }
             else if(jav.delete(Eng)==2){
