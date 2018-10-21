@@ -6,6 +6,7 @@
 package com.javaapplication1;
 
 import com.dict.javaconnect;
+import com.dict.lichsutim;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -27,7 +28,8 @@ class Word {
     String spelling,explain;
 }
 public class lsxoa extends javax.swing.JFrame {
-    Dictionary dicc= new Dictionary();   
+    Dictionary dicc= new Dictionary();  
+    DefaultListModel <String> model= new DefaultListModel<>(); 
     /**
      * Creates new form lsxoa
      */
@@ -38,7 +40,7 @@ public class lsxoa extends javax.swing.JFrame {
     }
     @SuppressWarnings("unchecked")
     private void initData(){
-        DefaultListModel <String> model= new DefaultListModel<>();       
+              
         File file = new File("lsxoa.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -69,7 +71,7 @@ public class lsxoa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         btlistt = new javax.swing.JList();
         btundo = new javax.swing.JButton();
-        btnhan = new javax.swing.JTextField();
+        btempty = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lịch sử xóa");
@@ -78,11 +80,6 @@ public class lsxoa extends javax.swing.JFrame {
 
         jLabel1.setText("Lịch sử xóa");
 
-        btlistt.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                btlisttValueChanged(evt);
-            }
-        });
         jScrollPane1.setViewportView(btlistt);
 
         btundo.setText("Undo");
@@ -90,6 +87,13 @@ public class lsxoa extends javax.swing.JFrame {
         btundo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btundoActionPerformed(evt);
+            }
+        });
+
+        btempty.setText("Empty");
+        btempty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btemptyActionPerformed(evt);
             }
         });
 
@@ -102,29 +106,27 @@ public class lsxoa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(btnhan, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btundo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btempty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btundo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btundo))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(btempty)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,16 +143,11 @@ public class lsxoa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btlisttValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_btlisttValueChanged
-        // TODO add your handling code here:
-        String value= btlistt.getSelectedValue().toString();                 
-        btnhan.setText(value);        
-    }//GEN-LAST:event_btlisttValueChanged
-
     private void btundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btundoActionPerformed
         // TODO add your handling code here:
+        int i= btlistt.getSelectedIndex();
         javaconnect jav = new javaconnect();
-        String word = btnhan.getText();
+        String word = model.get(i);
         if(jav.insert(word, dicc.words.get(word))==1) {
             JOptionPane.showMessageDialog(null, "trả lại từ thành công");            
         }
@@ -158,6 +155,15 @@ public class lsxoa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "từ đã trả lại");
         }
     }//GEN-LAST:event_btundoActionPerformed
+
+    private void btemptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btemptyActionPerformed
+        // TODO add your handling code here:
+        int  i= btlistt.getSelectedIndex();
+        lichsutim  ls= new lichsutim();
+        String word = model.get(i);      
+        ls.xoatu(word, "lsxoa.txt");
+        model.remove(i);            
+    }//GEN-LAST:event_btemptyActionPerformed
     
     /**
      * @param args the command line arguments
@@ -195,8 +201,8 @@ public class lsxoa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btempty;
     private javax.swing.JList btlistt;
-    private javax.swing.JTextField btnhan;
     private javax.swing.JButton btundo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
