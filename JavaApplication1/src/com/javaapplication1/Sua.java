@@ -124,14 +124,19 @@ public class Sua extends javax.swing.JFrame {
         String sword=btsword.getText();
         String word= btword.getText();
         String mean=btmean.getText();
-        if(jav.update(sword, word, mean)==1){
-            JOptionPane.showMessageDialog(null, "Complete!");
-        }
-        else if(jav.update(sword, word, mean)==0) {
-            JOptionPane.showMessageDialog(null, "Can't Repair!!!, Because not found");
+        if(sword.length()!=0&&word.length()!=0&&mean.length()!=0){
+            if(jav.update(sword, word, mean)==1){
+                JOptionPane.showMessageDialog(null, "Complete!");
+            }
+            else if(jav.update(sword, word, mean)==0) {
+                JOptionPane.showMessageDialog(null, "Can't Repair!!!, Because not found");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Sửa thành từ đã có sẵn");
+            }
         }
         else {
-            JOptionPane.showMessageDialog(null, "Sửa thành từ đã có sẵn");
+            JOptionPane.showMessageDialog(null, "Please type something!");
         }
     }//GEN-LAST:event_ModifyActionPerformed
 

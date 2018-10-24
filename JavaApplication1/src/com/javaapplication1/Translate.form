@@ -138,9 +138,6 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="btloa">
-          <Properties>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
-          </Properties>
           <Events>
             <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="btloaAncestorAdded"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btloaActionPerformed"/>

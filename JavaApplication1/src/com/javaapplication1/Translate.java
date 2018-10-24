@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -147,11 +148,14 @@ public class Translate extends javax.swing.JFrame {
         String word = btdoanv.getText();
         
         try {
+            
             btdich.setText(API.translate(word));
-        } catch (IOException ex) {
-            Logger.getLogger(Translate.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {           
+            JOptionPane.showMessageDialog(null, "Không có kết nối mạng");           
+            return;
         } catch (ParseException ex) {
             Logger.getLogger(Translate.class.getName()).log(Level.SEVERE, null, ex);
+            return;
         }
     }//GEN-LAST:event_bttranActionPerformed
 

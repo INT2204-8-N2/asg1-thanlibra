@@ -109,17 +109,21 @@ public class Xoa extends javax.swing.JFrame {
         lichsutim ls2 = new lichsutim();
         javaconnect jav= new javaconnect();        
         String Eng = DEngword.getText();       
-            ls2.luutu2(Eng, jav.find(Eng), "lsxoa.txt");           
+        if(jav.find(Eng)!="khong tim thay") ls2.luutu2(Eng, jav.find(Eng), "lsxoa.txt");     
+        if(Eng.length()!=0){
             if(jav.delete(Eng)==1){
                 ls.xoatu(Eng, "lsdic.txt");
                 JOptionPane.showMessageDialog(null, "Complete!");
             }
             else if(jav.delete(Eng)==2){
-                JOptionPane.showMessageDialog(null, "khong tim thay");
+                JOptionPane.showMessageDialog(null, Eng + ": Can not found!");
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error format");    
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please type something!");
+        }
     }//GEN-LAST:event_btxoaActionPerformed
 
     private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed

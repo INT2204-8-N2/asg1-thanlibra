@@ -14,7 +14,7 @@ import com.sun.speech.freetts.VoiceManager; // cái này phải tải thư việ
 public class speak {
     public void speech(String text) {
         VoiceManager voiceManager = VoiceManager.getInstance();
-        com.sun.speech.freetts.Voice syntheticVoice = voiceManager.getVoice("kevin16");
+        com.sun.speech.freetts.Voice syntheticVoice = voiceManager.getVoice("kevin");
         syntheticVoice.allocate();
         syntheticVoice.speak(text);
         syntheticVoice.deallocate();
