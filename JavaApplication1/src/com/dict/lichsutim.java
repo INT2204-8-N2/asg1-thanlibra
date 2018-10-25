@@ -12,10 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Set;
 
-/**
- *
- * @author Minh Anh
- */
+
 public class lichsutim {
     Dictionary lsdic = new Dictionary();
     public void insert(String name){
@@ -26,8 +23,8 @@ public class lichsutim {
             int i = 0;
             String line = "";
             for (i = 0; (line = br.readLine()) != null; i++){
-                String[] a = line.split("\\s", 2);
-               lsdic.words.put(a[0], a[1]);
+                String a = line;
+               lsdic.words.put(a, " ");
             }
             br.close();
         } catch (IOException e) {
@@ -41,7 +38,7 @@ public class lichsutim {
             Set<String> keySet= lsdic.words.keySet();
             fw.write("\r\n");
             for(String i: keySet) {               
-                String s= i+" "+ lsdic.words.get(i)+"\r\n";
+                String s= i+"\r\n";
                 fw.write(s);                
             }          
             fw.close();
@@ -49,16 +46,13 @@ public class lichsutim {
             System.out.println("Can't write to file " + ex);
         }
     }
+    
     public void luutu(String word, String name){
         this.insert(name);
         lsdic.words.put(word, "");
         this.write(name);
     }
-    public void luutu2(String word,String mean, String name){
-        this.insert(name);
-        lsdic.words.put(word, mean);
-        this.write(name);
-    }
+    
     public void xoatu(String word, String name){
         this.insert(name);
         lsdic.words.remove(word);

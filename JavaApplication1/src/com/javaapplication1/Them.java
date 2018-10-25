@@ -10,10 +10,7 @@ import com.dict.javaconnect;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author CCNE
- */
+
 public class Them extends javax.swing.JFrame {
 
     /**

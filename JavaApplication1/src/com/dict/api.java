@@ -5,10 +5,7 @@
  */
 package com.dict;
 
-/**
- *
- * @author Lai Thi Thu Phuong
- */
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -15,10 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.json.simple.parser.ParseException;
 
-/**
- *
- * @author Lai Thi Thu Phuong
- */
+
 public class Translate extends javax.swing.JFrame {
 
     /**

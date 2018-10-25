@@ -38,8 +38,6 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="undo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btxoa" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
           </Group>
@@ -56,10 +54,7 @@
                   <Component id="DEngword" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btxoa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="undo" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="btxoa" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -96,15 +91,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btxoaActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="undo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Undo"/>
-        <Property name="toolTipText" type="java.lang.String" value="l&#x1ea5;y l&#x1ea1;i t&#x1eeb; &#x111;&#xe3; x&#xf3;a"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="undoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

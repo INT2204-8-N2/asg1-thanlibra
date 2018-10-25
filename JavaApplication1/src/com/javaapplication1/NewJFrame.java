@@ -17,10 +17,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-/**
- *
- * @author CCNE
- */
+
 public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
@@ -36,8 +33,8 @@ public class NewJFrame extends javax.swing.JFrame {
             int i = 0;
             String line = "";
             for (i = 0; (line = br.readLine()) != null; i++){
-                String[] a = line.split("\\s", 2);
-                model.addElement(a[0]);
+                String a = line;
+                model.addElement(a);
             }
             br.close();
         } catch (IOException e) {

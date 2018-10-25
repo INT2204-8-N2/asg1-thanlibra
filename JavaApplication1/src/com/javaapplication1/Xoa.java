@@ -9,12 +9,6 @@ import com.dict.lichsutim;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author CCNE
- */
-
 public class Xoa extends javax.swing.JFrame {   
     /**
      * Creates new form Xoa
@@ -36,7 +30,6 @@ public class Xoa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DEngword = new javax.swing.JTextField();
         btxoa = new javax.swing.JButton();
-        undo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detele word");
@@ -56,14 +49,6 @@ public class Xoa extends javax.swing.JFrame {
             }
         });
 
-        undo.setText("Undo");
-        undo.setToolTipText("lấy lại từ đã xóa");
-        undo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                undoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,8 +64,6 @@ public class Xoa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(undo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btxoa)
                 .addGap(72, 72, 72))
         );
@@ -94,9 +77,7 @@ public class Xoa extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(DEngword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btxoa)
-                    .addComponent(undo))
+                .addComponent(btxoa)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -105,11 +86,9 @@ public class Xoa extends javax.swing.JFrame {
 
     private void btxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btxoaActionPerformed
         // TODO add your handling code here:   
-        lichsutim ls= new lichsutim();
-        lichsutim ls2 = new lichsutim();
+        lichsutim ls= new lichsutim();        
         javaconnect jav= new javaconnect();        
-        String Eng = DEngword.getText();       
-        if(jav.find(Eng)!="khong tim thay") ls2.luutu2(Eng, jav.find(Eng), "lsxoa.txt");     
+        String Eng = DEngword.getText();                 
         if(Eng.length()!=0){
             if(jav.delete(Eng)==1){
                 ls.xoatu(Eng, "lsdic.txt");
@@ -125,13 +104,6 @@ public class Xoa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please type something!");
         }
     }//GEN-LAST:event_btxoaActionPerformed
-
-    private void undoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionPerformed
-        
-       lsxoa ls= new lsxoa();
-       ls.setVisible(true);
-       ls.setLocation(500, 200);
-    }//GEN-LAST:event_undoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +145,6 @@ public class Xoa extends javax.swing.JFrame {
     private javax.swing.JButton btxoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton undo;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -5,10 +5,7 @@
  */
 package com.dict;
 
-/**
- *
- * @author Lai Thi Thu Phuong
- */
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -48,7 +45,7 @@ public class javaconnect {
             fw.write("\r\n");
             for(String i: keySet) {
                 //Bước 2: Ghi dữ liệu
-                String s= i+" "+ newdict.words.get(i)+"\r\n";
+                String s= i+"\r\n";
                 fw.write(s);                
             }          
             fw.close();

@@ -9,10 +9,7 @@ import com.dict.javaconnect;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author CCNE
- */
+
 public class Sua extends javax.swing.JFrame {
 
     /**

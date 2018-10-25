@@ -5,10 +5,7 @@
  */
 package com.dict;
 
-/**
- *
- * @author Lai Thi Thu Phuong
- */
+
 import java.util.HashMap;
 import java.util.Map;
 
